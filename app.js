@@ -50,7 +50,7 @@ const List = mongoose.model("List", ListSchema);
 
 
 
-app.get('/', function(req, res){
+app.all('/', function(req, res){
 
   Item.find({}).then(function(foundItems){
     if(foundItems.length === 0) {
