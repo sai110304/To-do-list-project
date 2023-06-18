@@ -74,22 +74,23 @@ app.post("/LIST", function(req,res){
   res.redirect("/"+listName)
 });
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
-app.post('/delete',async function (req,res) {
+app.post('/delete',function (req,res) {
   const checkeditemId = req.body.checkbox;
   const listName = req.body.listName;
 
-  if(listName === "Today") {
-    let product = await Item.findByIdAndRemove(checkeditemId).then(()=>{
-      res.redirect("/");
-    });
-  } else {
-    List.findOneAndUpdate({name: listName},{$pull :{items:{_id:checkeditemId}}}).then((foundList)=>{
-      foundList.save().then(()=>{
-        res.redirect("/"+ listName);
-      })
+  List.findOneAndUpdate({name: listName},{$pull :{items:{_id:checkeditemId}}}).then((foundList)=>{
+    foundList.save().then(()=>{
+      res.redirect("/"+ listName);
     })
-  }
+  })
 });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+app.post("/deleteList",function(req,res){
+  const checkedlistId = req.body.checkbox;
+  List.deleteOne({_id:checkedlistId}).then(()=>{
+    res.redirect("/");
+  })
+})
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 app.listen(process.env.PORT||3000, function(){
   console.log("Server started on port 3000.");

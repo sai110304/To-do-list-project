@@ -11,9 +11,12 @@
           </div>
     <%  } else{ %>
         <% newListItems.forEach((item) => { %>
-          <div class="item">
-            <p><a href="<%=item.name%>" style="text-decoration: none; color: black;" ><%=item.name%></a></p>
-          </div>
+          <form action="/deleteList" method="post">
+              <div class="item">
+                <input type="checkbox" name="checkbox" value="<%=item._id%>" onChange="this.form.submit()">
+                <p><a href="<%=item.name%>" style="text-decoration: none; color: black;" ><%=item.name%></a></p>
+              </div>
+          </form>
         <% });%>
       <% } %>
         <form  class="item" action="/LIST" method="post">
