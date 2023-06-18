@@ -23,6 +23,16 @@ h1 {
   text-align: center;
 }
 
+.back{
+  max-width: 200px;
+  text-align: center;
+  margin: 80px auto;
+  background: white;
+  border-radius: 8px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 .item {
   min-height: 70px;
   display: flex;

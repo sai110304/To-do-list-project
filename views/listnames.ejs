@@ -1,0 +1,25 @@
+<%- include("header") -%>
+    <div class="box" id="heading">
+      <h1> <%= listTitle %> </h1>
+    </div>
+
+    <div class="box">
+
+    <%  if(newListItems.length===0){ %>
+          <div class="item">
+            <p>Create your Lists</p>
+          </div>
+    <%  } else{ %>
+        <% newListItems.forEach((item) => { %>
+          <div class="item">
+            <p><a href="<%=item.name%>" style="text-decoration: none; color: black;" ><%=item.name%></a></p>
+          </div>
+        <% });%>
+      <% } %>
+        <form  class="item" action="/LIST" method="post">
+          <input type="text" name="newlist" placeholder="New list" autocomplete="off">
+          <button type="submit"> + </button>
+        </form>
+    </div>
+
+<%- include("footer") -%>
